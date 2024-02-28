@@ -62,8 +62,8 @@ public class MemberService {
         }
     }
 
-    public void getMember(Long memberId) {
-        memberRepository.findById(memberId).orElseThrow(
+    public Member getMember(Long memberId) {
+        return memberRepository.findById(memberId).orElseThrow(
                 ()-> new IllegalStateException(
                         "Member with Id "+memberId+" does NOT exist."
                 )

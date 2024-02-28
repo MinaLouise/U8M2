@@ -19,8 +19,8 @@ public class MemberController {
         return memberService.getMembers();
     }
     @GetMapping(path = "{memberId}")
-    public void getMemberById(@PathVariable("memberId") Long memberId){
-        memberService.getMember(memberId);
+    public Member getMemberById(@PathVariable("memberId") Long memberId){
+        return memberService.getMember(memberId);
     }
     @PostMapping
     public void registerNewMember(@RequestBody Member member){
