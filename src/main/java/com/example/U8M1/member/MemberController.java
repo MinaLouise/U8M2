@@ -18,6 +18,10 @@ public class MemberController {
     public List<Member> getMembers(){
         return memberService.getMembers();
     }
+    @GetMapping(path = "{memberId}")
+    public void getMemberById(@PathVariable("memberId") Long memberId){
+        memberService.getMember(memberId);
+    }
     @PostMapping
     public void registerNewMember(@RequestBody Member member){
         memberService.addNewMember(member);
