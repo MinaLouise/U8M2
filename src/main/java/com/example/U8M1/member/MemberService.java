@@ -1,6 +1,7 @@
 package com.example.U8M1.member;
 
 
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -35,6 +36,7 @@ public class MemberService {
         memberRepository.deleteById(memberId);
     }
 
+    @Transactional
     public void updateMember(Long memberId,
                              String name,
                              String position,
@@ -49,7 +51,7 @@ public class MemberService {
         }
         if (position != null &&
                 !Objects.equals(member.getName(), position)){
-            member.setName(position);
+            member.setPosition(position);
         }
         if (email != null &&
                 email.length() >0 &&
