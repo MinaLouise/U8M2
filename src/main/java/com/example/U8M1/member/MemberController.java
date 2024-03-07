@@ -1,8 +1,11 @@
 package com.example.U8M1.member;
 
+import com.example.U8M1.club.Club;
+import com.example.U8M1.club.ClubRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.security.auth.Subject;
 import java.util.*;
 
 @RestController

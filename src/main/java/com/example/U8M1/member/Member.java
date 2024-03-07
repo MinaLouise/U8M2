@@ -1,23 +1,29 @@
 package com.example.U8M1.member;
 
 import jakarta.persistence.*;
+import com.example.U8M1.club.Club;
+
+import java.util.*;
 
 @Entity
 @Table
 public class Member {
+
     @Id
     @SequenceGenerator(
             name = "member_sequence",
             sequenceName = "member_sequence",
             allocationSize = 1
     )
-
     @GeneratedValue(
             strategy = GenerationType.SEQUENCE,
             generator = "member_sequence"
     )
-
     private Long id;
+
+    @ManyToMany(mappedBy = "clubMembers")
+    private Set<Club> clubs = new HashSet<>();
+
     private String name;
     private String position;
     private String email;
@@ -81,6 +87,10 @@ public class Member {
     }
     public void setPhoneNum(String phoneNum) {
         this.phoneNum = phoneNum;
+    }
+
+    public Set<Club> getClubs() {
+        return clubs;
     }
 
     @Override

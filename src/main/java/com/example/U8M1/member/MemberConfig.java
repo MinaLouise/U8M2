@@ -9,7 +9,7 @@ import java.util.List;
 @Configuration
 public class MemberConfig {
     @Bean
-    CommandLineRunner commandLineRunner(MemberRepository repository){
+    CommandLineRunner commandLineRunnerMember(MemberRepository repository){
         return args -> {
             Member adrian = new Member(
                     "Adrian",

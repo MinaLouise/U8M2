@@ -54,7 +54,7 @@ public class MemberService {
             member.setPosition(position);
         }
         if (email != null &&
-                email.length() >0 &&
+                !email.isEmpty() &&
                 !Objects.equals(member.getEmail(), email)){
             Optional<Member> memberOptional = memberRepository.findMemberByEmail(email);
             if (memberOptional.isPresent()){
