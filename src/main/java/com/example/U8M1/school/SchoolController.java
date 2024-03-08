@@ -15,8 +15,8 @@ public class SchoolController {
         this.schoolService = schoolService;
     }
     @GetMapping
-    public List<School> getSchool(){
-        return schoolService.getSchool();
+    public List<School> getSchoolAll(){
+        return schoolService.getSchoolAll();
     }
     @GetMapping(path = "{schoolId}")
     public School getSchoolById(@PathVariable("schoolId") Long schoolId){

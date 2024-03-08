@@ -1,9 +1,9 @@
 package com.example.U8M1.club;
 
 import com.example.U8M1.member.Member;
-import com.example.U8M1.member.MemberRepository;
+import com.example.U8M1.member.MemberService;
 import com.example.U8M1.school.School;
-import com.example.U8M1.school.SchoolRepository;
+import com.example.U8M1.school.SchoolService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,27 +13,19 @@ import java.util.List;
 @RequestMapping(path="api/v1/club")
 public class ClubController {
     private  ClubService clubService;
-    private ClubRepository clubRepository;
-    private MemberRepository memberRepository;
-    private SchoolRepository schoolRepository;
+    private MemberService memberService;
+    private SchoolService schoolService;
 
     @Autowired
-    public ClubController(ClubService clubService){
+    public ClubController(ClubService clubService, SchoolService schoolService, MemberService memberService){
         this.clubService = clubService;
-    }
-    public ClubController(ClubRepository clubRepository){
-        this.clubRepository = clubRepository;
-    }
-    public ClubController(MemberRepository memberRepository){
-        this.memberRepository = memberRepository;
-    }
-    public ClubController(SchoolRepository schoolRepository){
-        this.schoolRepository = schoolRepository;
+        this.schoolService = schoolService;
+        this.memberService = memberService;
     }
 
     @GetMapping
-    public List<Club> getClub(){
-        return clubService.getClub();
+    public List<Club> getClubAll(){
+        return clubService.getClubAll();
     }
     @GetMapping(path = "{clubId}")
     public Club getClubById(@PathVariable("clubId") Long clubId){
@@ -63,10 +55,10 @@ public class ClubController {
             @PathVariable Long clubId,
             @PathVariable Long memberId
     ) {
-        Club club = clubRepository.findById(clubId).get();
-        Member member = memberRepository.findById(memberId).get();
+        Club club = clubService.getClub(clubId);
+        Member member = memberService.getMember(memberId);
         club.clubMembers(member);
-        return clubRepository.save(club);
+        return clubService.getClub(clubId);
     }
 
     @PutMapping("/{clubId}/school/{schoolId}")
@@ -74,9 +66,9 @@ public class ClubController {
             @PathVariable Long clubId,
             @PathVariable Long schoolId
     ) {
-        Club club = clubRepository.findById(clubId).get();
-        School school = schoolRepository.findById(schoolId).get();
+        Club club = clubService.getClub(clubId);
+        School school = schoolService.getSchool(schoolId);
         club.schoolClubs(school);
-        return clubRepository.save(club);
+        return clubService.getClub(clubId);
     }
 }

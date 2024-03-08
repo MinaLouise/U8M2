@@ -1,11 +1,8 @@
 package com.example.U8M1.member;
 
-import com.example.U8M1.club.Club;
-import com.example.U8M1.club.ClubRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import javax.security.auth.Subject;
 import java.util.*;
 
 @RestController
@@ -18,8 +15,8 @@ public class MemberController {
         this.memberService = memberService;
     }
     @GetMapping
-    public List<Member> getMembers(){
-        return memberService.getMembers();
+    public List<Member> getMemberAll(){
+        return memberService.getMemberAll();
     }
     @GetMapping(path = "{memberId}")
     public Member getMemberById(@PathVariable("memberId") Long memberId){

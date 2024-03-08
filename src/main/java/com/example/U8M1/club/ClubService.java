@@ -17,7 +17,7 @@ public class ClubService {
     public ClubService(ClubRepository clubRepository){
         this.clubRepository = clubRepository;
     }
-    public List<Club> getClub(){
+    public List<Club> getClubAll(){
         return clubRepository.findAll();
     }
     public void addNewClub(Club club){

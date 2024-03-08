@@ -17,7 +17,7 @@ public class SchoolService {
     public SchoolService(SchoolRepository schoolRepository){
         this.schoolRepository = schoolRepository;
     }
-    public List<School> getSchool(){
+    public List<School> getSchoolAll(){
         return schoolRepository.findAll();
     }
     public void addNewSchool(School school){

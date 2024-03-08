@@ -15,7 +15,7 @@ public class MemberService {
     public MemberService(MemberRepository memberRepository){
         this.memberRepository = memberRepository;
     }
-    public List<Member> getMembers(){
+    public List<Member> getMemberAll(){
         return memberRepository.findAll();
     }
     public void addNewMember(Member member){
